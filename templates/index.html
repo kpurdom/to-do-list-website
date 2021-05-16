@@ -1,0 +1,30 @@
+{% include "header.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!--Main section-->
+<section class="header" style="background-image: url('https://images.unsplash.com/photo-1608555307638-992062b31329?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjR8fHRleHR1cmUlMjBiYWNrZ3JvdW5kfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 mx-auto header-section">
+            <h1>Welcome to To-Do List</h1>
+            <h3>Imagine. Plan. Do.</h3>
+        </div>
+        <div class="col-lg-4 login-form">
+            <h5>Log-In:</h5>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  {% for message in messages %}
+                   <p>{{ message }}</p>
+                  {% endfor %}
+                {% endif %}
+            {% endwith %}
+                {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "dark"}) }}
+                <p>If you have not yet registered, please <a href="{{url_for('register')}}">register here</a></p>
+        </div>
+    </div>
+</div>
+</section>
+
+
+{% include "footer.html" %}

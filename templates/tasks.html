@@ -1,0 +1,44 @@
+{% include "header.html" %}
+
+  <!-- Section Header -->
+  <section class="header" style="background-image: url('https://images.unsplash.com/photo-1608555307638-992062b31329?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjR8fHRleHR1cmUlMjBiYWNrZ3JvdW5kfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="sub-section">
+            <h1>{{ parent_list.list }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!--Task section-->
+<section>
+<div class="container-fluid current-task">
+    {% if tasks: %}
+    {% for task in tasks: %}
+    <div class="row task-item">
+        <div class="col-6">
+            <p class="{{task.status}}">{{task.task}}</p>
+        </div>
+        <div class="col-6 task-buttons">
+            {% if task.status=="NOT_COMPLETE": %}
+            <a class="btn btn-outline-success btn-xs" href="{{url_for('task_complete', task_id=task.id) }}">✔</a>
+            {% else: %}
+            <a class="btn btn-success btn-xs" href="{{url_for('task_complete', task_id=task.id) }}">✔</a>
+            {% endif %}
+            <a class="btn btn-outline-danger btn-xs" href="{{url_for('delete_task', task_id=task.id) }}">✘</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+<div class="buttons">
+    <a class="btn btn-dark btn-lg" href="{{url_for('add_task', list_id=parent_list.id) }}">Add New Task</a>
+    <a class="btn btn-danger btn-lg" href="{{url_for('delete_list', list_id=parent_list.id) }}">Delete List</a>
+</div>
+</section>
+
+{% include "footer.html" %}

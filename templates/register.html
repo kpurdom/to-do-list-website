@@ -1,0 +1,30 @@
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+  <!-- Section Header -->
+  <section class="header" style="background-image: url('https://images.unsplash.com/photo-1608555307638-992062b31329?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjR8fHRleHR1cmUlMjBiYWNrZ3JvdW5kfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="sub-section">
+            <h1>Register</h1>
+            <span class="subheading">Let's get started!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container input-form">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "dark"}) }}
+      </div>
+    </div>
+  </div>
+
+{% include "footer.html" %}
+
